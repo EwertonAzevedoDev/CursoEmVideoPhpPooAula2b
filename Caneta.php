@@ -5,7 +5,7 @@ class Caneta
     var $modelo;
     var $cor;
     var $ponta;
-    var $carga;
+    var $carga = 100;
     var $tampada = true;
     var $guardada = true;
 
@@ -14,10 +14,24 @@ class Caneta
         if($this->guardada == true){
             echo "<p>Não peguei a caneta</p>";
         }
-        elseif($this->tampada == true){
+        elseif($this->tampada == true){            
             echo "<p>Não posso rabiscar, a caneta está tampada</p>";
         }else{
-            echo "<p>Estou rabiscando</p>";
+            if($this->cor == "Azul"){
+                $cor = "#0000ff";
+            }elseif($this->cor == "Verde"){
+                $cor = "#00ff00";
+            }elseif($this->cor == "Vermelha"){
+                $cor = "#ff0000";
+            }else{
+                $cor = "#000000";
+            }
+            if($this->ponta == "Porosa"){
+                $font = 900;
+            }else{
+                $font = 300;
+            }
+            echo "<p style='color:{$cor}; font-weight:{$font};'>Estou rabiscando</p>";
         }
         
     }
@@ -25,7 +39,7 @@ class Caneta
     public function tampar()
     {
         if($this->tampada == true){
-            echo "<p>Já estou tampada</p>";
+            echo "<p>Já está tampada</p>";
         }else{
             $this->tampada = true;
             echo "<p>Tampando caneta...</p>";
@@ -35,7 +49,7 @@ class Caneta
     public function destampar()
     {
         if($this->tampada == false){
-            echo "<p>Já estou destampada</p>";
+            echo "<p>Já está destampada</p>";
         }else{
             $this->tampada = false;
             echo "<p>Destampando caneta...</p>";
